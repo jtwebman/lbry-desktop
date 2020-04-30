@@ -60,6 +60,8 @@ function FileListPublished(props: Props) {
         title={__('Publishes')}
         titleActions={
           <div className="card__actions--inline">
+            <Button button="alt" label={__('New Publish')} navigate="/$/publish" onClick={() => clearPublish()} />
+
             <Button
               button="secondary"
               label={__('Refresh')}
@@ -67,18 +69,16 @@ function FileListPublished(props: Props) {
             />
           </div>
         }
+        isBodyList
         body={
           <div>
             <ClaimList
-              header={__('Your Publishes')}
+              isCardBody
               loading={fetching}
               persistedStorageKey="claim-list-published"
               uris={urls}
               includeOwnerActions
               abandonActionCallback={() => fetchClaimListMine(params.page, params.page_size)}
-              headerAltControls={
-                <Button button="link" label={__('New Publish')} navigate="/$/publish" onClick={() => clearPublish()} />
-              }
             />
             <Paginate totalPages={urlTotal > 0 ? Math.ceil(urlTotal / Number(pageSize)) : 1} />
           </div>
